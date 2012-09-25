@@ -37,14 +37,14 @@
 #  define cm3_assert_not_reached() do { \
 				cm3_assert_failed_verbose( \
 					__FILE__, __LINE__, \
-					__func__, NULL); \
+					__func__, 0); \
 			} while(0)
 # else
 #  define cm3_assert(expr) do { \
 				if(expr) { (void)0 } else { \
 					cm3_assert_failed(); \
 				} \
-			}
+			} while(0)
 #  define cm3_assert_not_reached() do { \
 				cm3_assert_failed(); \
 			} while(0)
