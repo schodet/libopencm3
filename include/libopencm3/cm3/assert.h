@@ -109,7 +109,7 @@ BEGIN_DECLS
  * implementation. Usually, a custom implementation of this function should
  * report an error in some way (print a message to a debug console, display,
  * LED, ...) and halts execution or reboots the device. */
-void cm3_assert_failed(void);
+void cm3_assert_failed(void) __attribute__ ((__noreturn__));
 
 /** @brief Called on a failed assertion with verbose messages enabled.
  *
@@ -125,7 +125,7 @@ void cm3_assert_failed(void);
  * @param func Name of the function where the failed assertion occurred
  * @param assert_expr Expression that evaluated to false (can be NULL) */
 void cm3_assert_failed_verbose(const char *file, int line, const char *func,
-		const char *assert_expr);
+		const char *assert_expr) __attribute__ ((__noreturn__));
 
 END_DECLS
 
