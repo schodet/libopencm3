@@ -55,7 +55,7 @@ LGPL License Terms @ref lgpl_license
 #else
 # ifdef CM3_ASSERT_VERBOSE
 #  define cm3_assert(expr) do { \
-				if(expr) { (void)0 } else { \
+				if(expr) { (void)0; } else { \
 					cm3_assert_failed_verbose( \
 						__FILE__, __LINE__, \
 						__func__, #expr); \
@@ -80,7 +80,7 @@ LGPL License Terms @ref lgpl_license
  *
  * @param expr expression to check */
 #  define cm3_assert(expr) do { \
-				if(expr) { (void)0 } else { \
+				if(expr) { (void)0; } else { \
 					cm3_assert_failed(); \
 				} \
 			} while(0)
@@ -110,7 +110,7 @@ BEGIN_DECLS
  * report an error in some way (print a message to a debug console, display,
  * LED, ...) and halts execution or reboots the device. */
 void cm3_assert_failed(void);
-`
+
 /** @brief Called on a failed assertion with verbose messages enabled.
  *
  * Halts execution in an infinite loop. This function never returns.
