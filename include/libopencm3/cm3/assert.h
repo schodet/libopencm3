@@ -49,13 +49,15 @@ LGPL License Terms @ref lgpl_license
 
 #include <libopencm3/cm3/common.h>
 
+#define CM3_UNLIKELY(expr) (__builtin_expect (!!(expr), 0))
+
 #ifdef NDEBUG
 # define cm3_assert(expr) do { (void)0; } while(0)
 # define cm3_assert_not_reached() do { (void)0; } while(0)
 #else
 # ifdef CM3_ASSERT_VERBOSE
 #  define cm3_assert(expr) do { \
-				if(expr) { (void)0; } else { \
+				if(CM3_UNLIKELY(expr)) { (void)0; } else { \
 					cm3_assert_failed_verbose( \
 						__FILE__, __LINE__, \
 						__func__, #expr); \
@@ -80,7 +82,7 @@ LGPL License Terms @ref lgpl_license
  *
  * @param expr expression to check */
 #  define cm3_assert(expr) do { \
-				if(expr) { (void)0; } else { \
+				if(CM3_UNLIKELY(expr)) { (void)0; } else { \
 					cm3_assert_failed(); \
 				} \
 			} while(0)
