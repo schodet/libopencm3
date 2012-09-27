@@ -53,7 +53,7 @@ LGPL License Terms @ref lgpl_license
 
 #ifdef NDEBUG
 # define cm3_assert(expr) do { (void)0; } while(0)
-# define cm3_assert_not_reached() do { (void)0; } while(0)
+# define cm3_assert_not_reached() while(1)
 #else
 # ifdef CM3_ASSERT_VERBOSE
 #  define cm3_assert(expr) do { \
@@ -88,9 +88,9 @@ LGPL License Terms @ref lgpl_license
 			} while(0)
 /** @brief Check if unreachable code is reached.
  *
- * If NDEBUG macro is defined, this macro generates no code. Otherwise
- * cm3_assert_failed() or cm3_assert_failed_verbose() is called if the macro
- * is ever reached.
+ * If NDEBUG macro is defined, this macro generates code for an infinite loop.
+ * Otherwise cm3_assert_failed() or cm3_assert_failed_verbose() is called if
+ * the macro is ever reached.
  *
  * The purpose of this macro is to aid in debugging libopencm3 and
  * applications using it. It can be used for example to stop execution if an
